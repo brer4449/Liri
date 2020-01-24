@@ -1,21 +1,19 @@
 require("dotenv").config();
 var keys = require("./keys.js");
-var spotify = new Spotify(keys.spotify);
-
+// var spotify = new Spotify(keys.spotify);
 // console.log(keys.spotify);
-concertFunction() = () => {};
 switch (process.argv[2]) {
   case "concert-this":
-    concertFunction();
+    // concertFunction();
     break;
   case "spotify-this-song":
-    spotifyFunction();
+    // spotifyFunction();
     break;
   case "movie-this":
-    movieFunction();
+    movieFunction;
     break;
   case "do-what-it-says":
-    textFunction();
+    // textFunction();
     break;
   default:
     console.log("Something went wrong! Check your spelling and try again!");

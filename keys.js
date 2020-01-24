@@ -1,7 +1,6 @@
-console.log("this is loaded");
 require("dotenv/config");
 const axios = require("axios");
-let input = process.argv[2];
+let input = process.argv[3];
 
 // axios({
 //   method: "GET",
@@ -15,16 +14,9 @@ let input = process.argv[2];
 //     console.log(`This ${response} failed`);
 //   });
 
-//* Title of the movie.
-// * Year the movie came out.
-// * IMDB Rating of the movie.
-// * Rotten Tomatoes Rating of the movie.
-// * Country where the movie was produced.
-// * Language of the movie.
-// * Plot of the movie.
-// * Actors in the movie.
+// concertFunction() = () => {};
 
-axios({
+movieFunction = axios({
   method: "GET",
   url: `http://www.omdbapi.com/?apikey=trilogy&t=${input}`
 })
@@ -42,8 +34,11 @@ axios({
     console.log(`Well that ${response} didn't work!`);
   });
 
+exports.movies = {
+  movie: movieFunction
+};
 exports.spotify = {
   id: process.env.SPOTIFY_ID,
   secret: process.env.SPOTIFY_SECRET
 };
-console.log(process.env.SPOTIFY_ID);
+// console.log(process.env.SPOTIFY_ID);
