@@ -1,7 +1,7 @@
 console.log("this is loaded");
 require("dotenv/config");
 const axios = require("axios");
-let artist = "drake";
+let input = process.argv[2];
 
 // axios({
 //   method: "GET",
@@ -15,15 +15,31 @@ let artist = "drake";
 //     console.log(`This ${response} failed`);
 //   });
 
+//* Title of the movie.
+// * Year the movie came out.
+// * IMDB Rating of the movie.
+// * Rotten Tomatoes Rating of the movie.
+// * Country where the movie was produced.
+// * Language of the movie.
+// * Plot of the movie.
+// * Actors in the movie.
+
 axios({
   method: "GET",
-  url: "http://www.omdbapi.com/?apikey=trilogy&t=mulan"
+  url: `http://www.omdbapi.com/?apikey=trilogy&t=${input}`
 })
   .then(response => {
-    console.log(response.data);
+    console.log(`Title: ${response.data.Title}`);
+    console.log(`Year: ${response.data.Year}`);
+    console.log(`IMDB Rating: ${response.data.imdbRating}`);
+    console.log(`Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}`);
+    console.log(`Country: ${response.data.Country}`);
+    console.log(`Language: ${response.data.Language}`);
+    console.log(`Plot: ${response.data.Plot}`);
+    console.log(`Actors: ${response.data.Actors}`);
   })
   .catch(response => {
-    console.log(response.data);
+    console.log(`Well that ${response} didn't work!`);
   });
 
 exports.spotify = {
