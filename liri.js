@@ -28,10 +28,6 @@ const getSpotifyInfo = () => {
     });
 };
 
-//Name of the venue
-// Venue location
-// Date of the Event (use moment to format this as "MM/DD/YYYY")
-
 const getConcertInfo = () => {
   axios({
     method: "GET",
@@ -77,6 +73,32 @@ const getMovieInfo = () => {
     });
 };
 
+const doWhatItSays = () => {
+  fs.readFile("random.txt", "utf8", (error, data) => {
+    if (error) {
+      return console.log(error);
+    }
+    var dataArray = data.split(",");
+    input = dataArray[1];
+    switch (dataArray[0]) {
+      case "concert-this":
+        getConcertInfo();
+        break;
+      case "spotify-this-song":
+        getSpotifyInfo();
+        break;
+      case "movie-this":
+        getMovieInfo();
+        break;
+      case "do-what-it-says":
+        doWhatItSays();
+        break;
+      default:
+        console.log("Something went wrong! Check your spelling and try again!");
+    }
+  });
+};
+
 switch (process.argv[2]) {
   case "concert-this":
     getConcertInfo();
@@ -88,7 +110,7 @@ switch (process.argv[2]) {
     getMovieInfo();
     break;
   case "do-what-it-says":
-    // textFunction();
+    doWhatItSays();
     break;
   default:
     console.log("Something went wrong! Check your spelling and try again!");
