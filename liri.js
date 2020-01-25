@@ -5,6 +5,7 @@ const spotify = new Spotify(keys.spotify);
 const fs = require("fs");
 let input = process.argv[3];
 const axios = require("axios");
+const moment = require("moment");
 
 const getSpotifyInfo = () => {
   if (!input) {
@@ -25,24 +26,26 @@ const getSpotifyInfo = () => {
     .catch(err => {
       console.log(err);
     });
-  // console.log(keys.spotify);
 };
 
 //Name of the venue
 // Venue location
 // Date of the Event (use moment to format this as "MM/DD/YYYY")
 
-// concertFunction = axios({
-//   method: "GET",
-//   url: `https://rest.bandsintown.com/artists/"${input}"/events?app_id=codingbootcamp`
-// })
-//   .then(response => {
-//     response.data;
-//     console.log(response);
-//   })
-//   .catch(response => {
-//     console.log(`This ${response} failed`);
-//   });
+const getConcertInfo = () => {
+  axios({
+    method: "GET",
+    url: `https://rest.bandsintown.com/artists/${input}/events?app_id=codingbootcamp`
+  })
+    .then(response => {
+      console.log(response.data[0].venue.city);
+      console.log(response.data[0].venue.name);
+      console.log(moment(response.data[0].datetime).format("L"));
+    })
+    .catch(response => {
+      console.log(`This ${response} failed`);
+    });
+};
 
 const getMovieInfo = () => {
   if (!input) {
@@ -76,7 +79,7 @@ const getMovieInfo = () => {
 
 switch (process.argv[2]) {
   case "concert-this":
-    // concertFunction;
+    getConcertInfo();
     break;
   case "spotify-this-song":
     getSpotifyInfo();
