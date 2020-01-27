@@ -25,8 +25,9 @@ The user MUST have a dot env file to use the spotify portion of this app. First 
 
 ## Functionality
 
-![alt text](https://github.com/brer4449/homework9/blob/master/assets/images/liri1.png)
-![alt text](https://github.com/brer4449/homework9/blob/master/assets/images/liri2.png)
+![first example of working application](https://github.com/brer4449/homework9/blob/master/assets/images/liri1.png)
+![second example of working application](https://github.com/brer4449/homework9/blob/master/assets/images/liri2.png)
+![second example of working application](https://github.com/brer4449/homework9/blob/master/assets/images/liri3.png)
 
 ## Technologies
 

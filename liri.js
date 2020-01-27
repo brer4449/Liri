@@ -73,6 +73,17 @@ const getMovieInfo = () => {
     });
 };
 
+fs.appendFile(
+  "log.txt",
+  process.argv[2] + "," + process.argv[3] + "\n",
+  err => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("Successfully added to file!");
+  }
+);
+
 const doWhatItSays = () => {
   fs.readFile("random.txt", "utf8", (error, data) => {
     if (error) {
