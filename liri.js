@@ -52,7 +52,6 @@ const getMovieInfo = () => {
     url: `http://www.omdbapi.com/?apikey=trilogy&t=${input}`
   })
     .then(response => {
-      // console.log(response.data);
       if (response.data.Response === "False") {
         console.log(response.data.Error);
       } else {
