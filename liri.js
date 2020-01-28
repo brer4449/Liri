@@ -7,7 +7,9 @@ let input = process.argv[3];
 const axios = require("axios");
 const moment = require("moment");
 
+//Function to get data from Spotify
 const getSpotifyInfo = () => {
+  //setting default to search "The Sign" by Ace of Base
   if (!input) {
     input = "The Sign";
   }
@@ -28,6 +30,7 @@ const getSpotifyInfo = () => {
     });
 };
 
+//Axios function to get data from bandsintown
 const getConcertInfo = () => {
   axios({
     method: "GET",
@@ -43,7 +46,9 @@ const getConcertInfo = () => {
     });
 };
 
+//Axios function to get data from omdb
 const getMovieInfo = () => {
+  //setting default to search Mr. Nobody
   if (!input) {
     input = "Mr. Nobody";
   }
@@ -72,6 +77,7 @@ const getMovieInfo = () => {
     });
 };
 
+//Adding commands and input to (not overwriting) log.txt file
 fs.appendFile(
   "log.txt",
   process.argv[2] + "," + process.argv[3] + "\n",
@@ -83,11 +89,13 @@ fs.appendFile(
   }
 );
 
+//Function to read file and run Liri based on what's in random.txt file
 const doWhatItSays = () => {
   fs.readFile("random.txt", "utf8", (error, data) => {
     if (error) {
       return console.log(error);
     }
+    //splitting the content of the file at the comma
     var dataArray = data.split(",");
     input = dataArray[1];
     switch (dataArray[0]) {
@@ -109,6 +117,7 @@ const doWhatItSays = () => {
   });
 };
 
+//switch to check which command is typed in
 switch (process.argv[2]) {
   case "concert-this":
     getConcertInfo();
