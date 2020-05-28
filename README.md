@@ -16,7 +16,7 @@ The user MUST have a dot env file to use the spotify portion of this app with a 
 
 ## Functionality
 
-![example of working application]()
+![example of working application](./assets/images/liri.gif)
 
 ## Technologies
 
