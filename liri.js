@@ -1,5 +1,5 @@
 require("dotenv").config();
-var keys = require("./keys.js");
+let keys = require("./keys.js");
 const Spotify = require("node-spotify-api");
 const spotify = new Spotify(keys.spotify);
 const fs = require("fs");
@@ -15,7 +15,7 @@ const getSpotifyInfo = () => {
   }
   spotify
     .search({ type: "track", query: `${input}` })
-    .then(response => {
+    .then((response) => {
       if (response.tracks.items.length === 0) {
         console.log("Couldn't find that song, try again");
       } else {
@@ -25,28 +25,28 @@ const getSpotifyInfo = () => {
         console.log(response.tracks.items[0].album.name);
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };
 
-//Axios function to get data from bandsintown
+//Axios function to get data from bandsInTown
 const getConcertInfo = () => {
   axios({
     method: "GET",
-    url: `https://rest.bandsintown.com/artists/${input}/events?app_id=codingbootcamp`
+    url: `https://rest.bandsintown.com/artists/${input}/events?app_id=codingbootcamp`,
   })
-    .then(response => {
+    .then((response) => {
       console.log(response.data[0].venue.city);
       console.log(response.data[0].venue.name);
       console.log(moment(response.data[0].datetime).format("L"));
     })
-    .catch(response => {
+    .catch((response) => {
       console.log(`This ${response} failed`);
     });
 };
 
-//Axios function to get data from omdb
+//Axios function to get data from OMDB
 const getMovieInfo = () => {
   //setting default to search Mr. Nobody
   if (!input) {
@@ -54,9 +54,9 @@ const getMovieInfo = () => {
   }
   axios({
     method: "GET",
-    url: `http://www.omdbapi.com/?apikey=trilogy&t=${input}`
+    url: `http://www.omdbapi.com/?apikey=trilogy&t=${input}`,
   })
-    .then(response => {
+    .then((response) => {
       if (response.data.Response === "False") {
         console.log(response.data.Error);
       } else {
@@ -72,7 +72,7 @@ const getMovieInfo = () => {
         console.log(`Actors: ${response.data.Actors}`);
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };
@@ -81,7 +81,7 @@ const getMovieInfo = () => {
 fs.appendFile(
   "log.txt",
   process.argv[2] + "," + process.argv[3] + "\n",
-  err => {
+  (err) => {
     if (err) {
       return console.log(err);
     }
@@ -96,7 +96,7 @@ const doWhatItSays = () => {
       return console.log(error);
     }
     //splitting the content of the file at the comma
-    var dataArray = data.split(",");
+    let dataArray = data.split(",");
     input = dataArray[1];
     switch (dataArray[0]) {
       case "concert-this":
